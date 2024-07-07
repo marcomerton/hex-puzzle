@@ -1,6 +1,5 @@
 
-blocked_grid_points: [
+blocked_grid_cells: [
   [5, 5],
 ]
 
-excluded_pieces: []

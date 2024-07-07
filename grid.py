@@ -23,7 +23,7 @@ VISITED = -4
 # Colors for special grid cells
 color_map = {
 	HIDDEN: "grey",
-	BLOCKED: "black",
+	BLOCKED: "#331900", #"black",
 	FREE: "white",
 	ERROR: "red",
 }

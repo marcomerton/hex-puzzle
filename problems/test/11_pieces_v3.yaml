@@ -1,0 +1,55 @@
+
+blocked_grid_cells: [
+  [5, 7],
+  [6, 5],
+  [8, 3], [8, 4], [8, 5],
+  [9, 1],
+]
+
+excluded_pieces: [10]
+
+solution:
+  1:
+    base_x: 4
+    base_y: 6
+    rotation: 0
+  2:
+    base_x: 8
+    base_y: 1
+    rotation: 0
+  3:
+    base_x: 1
+    base_y: 6
+    rotation: 0
+  4:
+    base_x: 7
+    base_y: 6
+    rotation: 1
+  5:
+    base_x: 1
+    base_y: 9
+    rotation: 0
+  6:
+    base_x: 7
+    base_y: 1
+    rotation: 0
+  7:
+    base_x: 7
+    base_y: 2
+    rotation: 0
+  8:
+    base_x: 8
+    base_y: 6
+    rotation: 2
+  9:
+    base_x: 1
+    base_y: 5
+    rotation: 2
+  11:
+    base_x: 6
+    base_y: 3
+    rotation: 1
+  12:
+    base_x: 1
+    base_y: 7
+    rotation: 0

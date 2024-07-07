@@ -1,9 +1,20 @@
+"""
+This module contains a general `Piece` class, implementing the common interface 
+of all pieces and the definition of the 12 concrete pieces in the game 
+(excluded the single cell piece used to contrain the solution).
+
+For all the pieces, the position of their five components relative to the base 
+coordinate, for the 3 possible rotations, are pre-computed and stored as class 
+attributes.
+"""
+
 import sys
 
 
 NUM_PIECES = 12
 
 
+# Relative position (x, y) of the 6 neighbors of a cell
 movement_dict = {
     0: (1, 0),    # Right
     1: (0, 1),    # Top right
@@ -14,13 +25,17 @@ movement_dict = {
 }
 
 
+# Pre-computed list of possible piece rotations
+rot_list = list(range(3))
+
+
 
 class Piece:
     """
     Superclass for pieces. This defines the common behavior of all pieces.
 
-    Subclasses should define a `movement` attribute containing the relative 
-    position, in each of the three orientations, of the five piece's component 
+    Subclasses should define a `movement` attribute containing the position, 
+    in each of the three possible rotations, of the five piece's component 
     relative to a base component.
 
     Args:
@@ -31,11 +46,11 @@ class Piece:
     """
 
     def __init__(
-        self, base_x: int, base_y: int, index: int, rotation: int = 0
+        self, index: int, base_x: int = 0, base_y: int = 0, rotation: int = 0
     ):
+        self.index = index
         self.base_x = base_x
         self.base_y = base_y
-        self.index = index
         self.rotation = rotation % 3
         self.__make_coords()
     
@@ -46,6 +61,15 @@ class Piece:
             for x, y in self.movements[self.rotation]
         ]
     
+    def __str__(self) -> str:
+        """To-string magic method."""
+        return (
+            f"Piece{self.index}("
+            f"x={self.base_x}, "
+            f"y={self.base_y}, "
+            f"rot={self.rotation})"
+        )
+
     def __iter__(self):
         """Iterator over piece's components."""
         return iter(self.points)
@@ -87,7 +111,7 @@ class Piece1(Piece):
         [(0, 0), (0, -1), (0, -2), (1, -3), (-1, -2)],
     ]
     def __init__(self, base_x: int = 0, base_y: int = 0, rotation: int = 0):
-        super().__init__(base_x, base_y, 1, rotation)
+        super().__init__(1, base_x, base_y, rotation)
 
 
 class Piece2(Piece):
@@ -104,7 +128,7 @@ class Piece2(Piece):
         [(0, 0), (1, -1), (2, -1), (3, -2), (3, -1)],
     ]
     def __init__(self, base_x: int = 0, base_y: int = 0, rotation: int = 0):
-        super().__init__(base_x, base_y, 2, rotation)
+        super().__init__(2, base_x, base_y, rotation)
 
 
 class Piece3(Piece):
@@ -119,7 +143,7 @@ class Piece3(Piece):
         [(0, 0), (0, -1), (0, -2), (1, -3), (1, -4)],
     ]
     def __init__(self, base_x: int = 0, base_y: int = 0, rotation: int = 0):
-        super().__init__(base_x, base_y, 3, rotation)
+        super().__init__(3, base_x, base_y, rotation)
 
 
 class Piece4(Piece):
@@ -134,7 +158,7 @@ class Piece4(Piece):
         [(0, 0), (-1, 0), (-1, -1), (-1, -2), (0, -2)],
     ]
     def __init__(self, base_x: int = 0, base_y: int = 0, rotation: int = 0):
-        super().__init__(base_x, base_y, 4, rotation)
+        super().__init__(4, base_x, base_y, rotation)
 
 
 class Piece5(Piece):
@@ -149,7 +173,7 @@ class Piece5(Piece):
         [(0, 0), (0, -1), (0, -2), (0, -3), (-1, -2)],
     ]
     def __init__(self, base_x: int = 0, base_y: int = 0, rotation: int = 0):
-        super().__init__(base_x, base_y, 5, rotation)
+        super().__init__(5, base_x, base_y, rotation)
 
 
 class Piece6(Piece):
@@ -165,7 +189,7 @@ class Piece6(Piece):
         [(0, 0), (0, 1), (0, 2), (1, 2), (2, 2)],
     ]
     def __init__(self, base_x: int = 0, base_y: int = 0, rotation: int = 0):
-        super().__init__(base_x, base_y, 6, rotation)
+        super().__init__(6, base_x, base_y, rotation)
 
 
 class Piece7(Piece):
@@ -181,7 +205,7 @@ class Piece7(Piece):
         [(0, 0), (0, 1), (0, 2), (1, 1), (2, 1)],
     ]
     def __init__(self, base_x: int = 0, base_y: int = 0, rotation: int = 0):
-        super().__init__(base_x, base_y, 7, rotation)
+        super().__init__(7, base_x, base_y, rotation)
 
 
 class Piece8(Piece):
@@ -196,7 +220,7 @@ class Piece8(Piece):
         [(0, 0), (1, -1), (1, -2), (1, -3), (1, -4)],
     ]
     def __init__(self, base_x: int = 0, base_y: int = 0, rotation: int = 0):
-        super().__init__(base_x, base_y, 8, rotation)
+        super().__init__(8, base_x, base_y, rotation)
 
 
 class Piece9(Piece):
@@ -213,7 +237,7 @@ class Piece9(Piece):
         [(0, 0), (1, -1), (1, 0), (2, -1), (3, -2)],
     ]
     def __init__(self, base_x: int = 0, base_y: int = 0, rotation: int = 0):
-        super().__init__(base_x, base_y, 9, rotation)
+        super().__init__(9, base_x, base_y, rotation)
 
 
 class Piece10(Piece):
@@ -229,7 +253,7 @@ class Piece10(Piece):
         [(0, 0), (0, -1), (1, -2), (1, -3), (2, -3)],
     ]
     def __init__(self, base_x: int = 0, base_y: int = 0, rotation: int = 0):
-        super().__init__(base_x, base_y, 10, rotation)
+        super().__init__(10, base_x, base_y, rotation)
 
 
 class Piece11(Piece):
@@ -245,7 +269,7 @@ class Piece11(Piece):
         [(0, 0), (0, -1), (-1, -1), (0, -2), (1, -3)],
     ]
     def __init__(self, base_x: int = 0, base_y: int = 0, rotation: int = 0):
-        super().__init__(base_x, base_y, 11, rotation)
+        super().__init__(11, base_x, base_y, rotation)
 
 
 class Piece12(Piece):
@@ -260,4 +284,4 @@ class Piece12(Piece):
         [(0, 0), (0, -1), (1, -1), (1, -2), (1, -3)],
     ]
     def __init__(self, base_x: int = 0, base_y: int = 0, rotation: int = 0):
-        super().__init__(base_x, base_y, 12, rotation)
+        super().__init__(12, base_x, base_y, rotation)
