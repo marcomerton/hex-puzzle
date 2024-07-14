@@ -17,7 +17,8 @@ def load_solution(filename: str) -> Grid:
     - 'blocked_grid_cells': This should be a list of (x, y) couples 
       corresponding to the x and y coordinates of the blocked grid cells.
 
-    - 'solution': ...
+    - 'solution': This should be a list of piece indexes, where each index is 
+      a further section containing its rotation and base x & y in the solution
 
     Args:
         filename (str): Configuration file name (yaml).
