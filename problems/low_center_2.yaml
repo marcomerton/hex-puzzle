@@ -3,3 +3,52 @@ blocked_grid_cells: [
   [6, 2],
 ]
 
+solution:
+  1:
+    base_x: 7
+    base_y: 3
+    rotation: 1
+  2:
+    base_x: 8
+    base_y: 2
+    rotation: 0
+  3:
+    base_x: 2
+    base_y: 6
+    rotation: 0
+  4:
+    base_x: 8
+    base_y: 4
+    rotation: 1
+  5:
+    base_x: 5
+    base_y: 1
+    rotation: 1
+  6:
+    base_x: 1
+    base_y: 7
+    rotation: 2
+  7:
+    base_x: 9
+    base_y: 1
+    rotation: 0
+  8:
+    base_x: 8
+    base_y: 6
+    rotation: 2
+  9:
+    base_x: 4
+    base_y: 9
+    rotation: 2
+  10:
+    base_x: 4
+    base_y: 4
+    rotation: 1
+  11:
+    base_x: 5
+    base_y: 4
+    rotation: 2
+  12:
+    base_x: 2
+    base_y: 7
+    rotation: 0
